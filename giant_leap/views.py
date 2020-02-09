@@ -13,8 +13,10 @@ def homepage(request):
     if 'search' in request.GET:
         search_term = request.GET['search']
         response = requests.get('https://images-api.nasa.gov/search?q='+search_term)
-        apodata = response.json()
-        nasa_info = []
+        search_data = response.json()
+        #for data in search_data.collection.data:
+
+
         #print(apodata)
 
 
