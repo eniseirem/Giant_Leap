@@ -1,10 +1,14 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import requests
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from giant_leap.forms import SignUpForm
+from django.contrib.auth.decorators import login_required
+
 
 key = "?api_key=V7RttlrR5x2ul8TvNpLCXo0CXNOvVS8VAw4HbkmT"
 
+@login_required
 def homepage(request):
     response = requests.get('https://api.nasa.gov/planetary/apod'+key)
     data = response.json()
@@ -46,7 +50,30 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
             login(request, user)
-            return redirect('home')
+            return redirect('login')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user:
+            if user.is_active:
+                login(request,user)
+                return redirect('home')
+            else:
+                return HttpResponse("Your account was inactive.")
+        else:
+            print("Someone tried to login and failed.")
+            print("They used username: {} and password: {}".format(username,password))
+            return HttpResponse("Invalid login details given")
+    else:
+        return render(request,'login.html')
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return redirect('login')
