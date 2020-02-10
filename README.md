@@ -37,6 +37,7 @@ https://docs.djangoproject.com/en/2.2/topics/install/
 <b> How to Start Project </b> 
 <br>
  If you are using Linux Destro like Ubuntu, You need to replace pip and python to pip3 and python3
+ 
 ```
 pip install
 python manage.py migrate
@@ -57,7 +58,8 @@ Sqllite used.
 <b> Admin Informations </b> 
 <br>
  You can reach Admin panel from /admin.
- ```
+ 
+```
 name :neil
 password : armstrong
 ```
