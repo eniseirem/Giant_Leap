@@ -1,23 +1,34 @@
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: visible;
-  background-color: #333;
+.messages {
+    margin: auto;
+    width: 500px;
+    margin: auto;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    background-color: initial;
+    list-style-type: none;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: #333;
 }
 
 li {
-  float: left;
+    float: left;
 }
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: bisque;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: bisque;
 }
 
 li a:hover {
-  background-color: #111;
+    background-color: #111;
 }
