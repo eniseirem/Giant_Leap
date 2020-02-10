@@ -28,28 +28,29 @@ For other Linux flavors, macOS and Windows, packages are available at
 
 http://www.python.org/getit/
 
-For Django you can use this line
-
-```
-$ pip install Django
-```
 
 You can find further information about Django
 
 https://docs.djangoproject.com/en/2.2/topics/install/
 
-Use the package manager pip to install mysqlclient and requests.
+<br>
+<b> How to Start Project </b> 
+<br>
+ If you are using Linux Destro like Ubuntu, You need to replace pip and python to pip3 and python3
+```
+pip install
+python manage.py migrate
+python manage.py runserver
+```
 
-```
-$ pip install mysqlclient
-$ pip install requests
-```
 
 <br>
 <b> Database Informations </b> 
 <br>
 
 Sqllite used.
+
+
 
 
 <br>
