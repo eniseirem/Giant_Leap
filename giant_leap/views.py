@@ -53,7 +53,10 @@ def signup(request):
             return redirect('login')
     else:
         form = SignUpForm()
-    return render(request, 'signup.html', {'form': form})
+        if request.user.is_authenticated:
+            return homepage(request)
+        else:
+            return render(request, 'signup.html', {'form': form})
 
 def user_login(request):
     if request.method == 'POST':
@@ -71,7 +74,10 @@ def user_login(request):
             print("They used username: {} and password: {}".format(username,password))
             return HttpResponse("Invalid login details given")
     else:
-        return render(request,'login.html')
+        if request.user.is_authenticated:
+            return homepage(request)
+        else:
+            return render(request,'login.html')
 
 @login_required
 def user_logout(request):
