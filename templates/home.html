@@ -1,17 +1,18 @@
 {% extends './layout.html' %}
 {% block content %}
-<head>
-    <meta charset="UTF-8">
-    <title>Giant Leap</title>
-</head>
-<body>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Giant Leap</title>
+    </head>
+    <body>
 
-<div class="container">
-<div> {% include './partial/searchbar.html' %}</div>
+    <div class="container">
+        <div> {% include './partial/searchbar.html' %}</div>
+        <div>{% include './partial/pics.html' %}</div>
 
-    <div>{% include './partial/pics.html' %}</div>
-</div>
+    </div>
 
-</body>
-</html>
+    </body>
+
 {% endblock %}
