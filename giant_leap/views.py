@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate, logout
 from giant_leap.forms import SignUpForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
 
 key = "?api_key=V7RttlrR5x2ul8TvNpLCXo0CXNOvVS8VAw4HbkmT"
 
@@ -79,13 +80,16 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
+                name = request.user.username
+                messages.success(request,"Welcome " + name)
                 return redirect('home')
             else:
                 return HttpResponse("Your account was inactive.")
         else:
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(username,password))
-            return HttpResponse("Invalid login details given")
+            messages.error(request,"Invalid login details given")
+            return render(request,'login.html', {'color': 'red'})
     else:
         if request.user.is_authenticated:
             return homepage(request)
