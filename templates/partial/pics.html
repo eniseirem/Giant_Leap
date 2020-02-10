@@ -15,3 +15,28 @@
         </div>
     {% endfor %}
 </div>
+
+<hr class="mt-2 mb-5">
+<div class="row">
+{% if pics.has_other_pages %}
+  <ul class="pagination">
+    {% if pics.has_previous %}
+      <li><a href="?page={{ pics.previous_page_number }}&{{ params }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in pics.paginator.page_range %}
+      {% if pics.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}&{{ params }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if pics.has_next %}
+      <li><a href="?page={{ pics.next_page_number }}&{{ params }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
