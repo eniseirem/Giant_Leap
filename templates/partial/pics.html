@@ -1,14 +1,17 @@
 <hr class="mt-2 mb-5">
-
 <div class="row text-center text-lg-left">
-<div class="col-lg-3 col-md-4 col-6">
-    <img  style="max-width:100%;" src="{{ pics.url }}">
-<p><strong>{{ pics.title }}</strong></p>
-                        <div class="align-left">
+
+    {% for pic in pics %}
+        <div class="col-lg-3 col-md-4 col-6">
+
+            <img style="max-width:100%;" src="{{ pic.url }}">
+            <p><strong>{{ pics.title }}</strong></p>
+            <div class="align-left">
 
 <textarea readonly class="form-control" row="10" id="desc"
-style="background-color: #353b48; color:aliceblue">{{ pics.explanation }}</textarea>
+          style="background-color: #353b48; color:aliceblue">{{ pic.explanation }}</textarea>
 
-</div>
-</div>
+            </div>
+        </div>
+    {% endfor %}
 </div>
