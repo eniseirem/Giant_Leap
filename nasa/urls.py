@@ -20,5 +20,6 @@ from giant_leap import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/',views.homepage, name='home'),
-    path('', views.signup, name='signup')
+    path('', views.signup, name='signup'),
+    path('login/', views.login, name='login')
 ]
