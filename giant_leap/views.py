@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 import requests
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from giant_leap.forms import SignUpForm
 from django.contrib.auth.decorators import login_required
 
@@ -54,7 +54,8 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
-def login(request):
+
+def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -73,6 +74,6 @@ def login(request):
         return render(request,'login.html')
 
 @login_required
-def logout(request):
+def user_logout(request):
     logout(request)
-    return render('login.html')
+    return redirect('login')
