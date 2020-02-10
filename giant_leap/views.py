@@ -4,7 +4,7 @@ import requests
 from django.contrib.auth import login, authenticate, logout
 from giant_leap.forms import SignUpForm
 from django.contrib.auth.decorators import login_required
-
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 key = "?api_key=V7RttlrR5x2ul8TvNpLCXo0CXNOvVS8VAw4HbkmT"
 
@@ -35,10 +35,23 @@ def homepage(request):
                 continue
             imgList.append(placeImg)
 
-        print('IMG LIST BITTI')
-        print(imgList)
 
-    return render(request, 'home.html', {'pics': imgList})
+
+    paginator = Paginator(imgList,20)
+    page = request.GET.get('page',1)
+    try:
+        imgList = paginator.page(page)
+    except PageNotAnInteger:
+        imgList= paginator.page(1)
+    except EmptyPage:
+        imgList = paginator.page(paginator.num_pages)
+
+    # keeping params for paginator
+    params = request.GET.get('search', '')
+    params_link = "search=" + params
+
+
+    return render(request, 'home.html', {'pics': imgList, 'params': params_link})
 
 
 def signup(request):
