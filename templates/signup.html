@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="col-lg-3 col-md-4 col-6">
+  <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="row">
+      <p>
+        {{ field.label_tag }}<br>
+        {{ field }}
+        {% if field.help_text %}
+         <br><small style="color: grey; background-color: #333333">{{ field.help_text }}</small>
+        {% endif %}
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn" style="background-color: #333333; color: gray">Sign up</button>
+  </form>
+    </div>
+</div>
+{% endblock %}
