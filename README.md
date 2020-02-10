@@ -39,7 +39,7 @@ https://docs.djangoproject.com/en/2.2/topics/install/
  If you are using Linux Destro like Ubuntu, You need to replace pip and python to pip3 and python3
  
 ```
-pip install
+pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
