@@ -58,15 +58,16 @@ Sqllite used.
 <b> Admin Informations </b> 
 <br>
  You can reach Admin panel from /admin.
+ But before you need an account with admin permission, to create this; .
+
  
 ```
-name :neil
-password : armstrong
+python manage.py createsuperuser
 ```
 
  <br>
  <b>IMPORTANT</b>
 
-For development at mybooklist/settings.py -> DEBUG must be set to TRUE
+For development at nasa/settings.py -> DEBUG must be set to TRUE
 <br>
 (It left as true)
