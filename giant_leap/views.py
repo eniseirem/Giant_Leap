@@ -7,9 +7,35 @@ key = "?api_key=V7RttlrR5x2ul8TvNpLCXo0CXNOvVS8VAw4HbkmT"
 
 def homepage(request):
     response = requests.get('https://api.nasa.gov/planetary/apod'+key)
-    apodata = response.json()
+    data = response.json()
+    imgList = []
+    imgList.append(data)
 
-    return render(request, 'home.html', {'pics': apodata})
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        response = requests.get('https://images-api.nasa.gov/search?q='+search_term)
+        apodata = response.json()['collection']['items']
+        imgList.clear()
+        for x in apodata:
+            placeImg = {'explanation': '', 'url': ''}
+
+            try:
+                placeImg['explanation'] = x['data'][0]['description']
+            except KeyError:
+                placeImg['explanation'] = x['data'][0]['title']
+
+            try:
+                placeImg['url'] = x['links'][0]['href']
+            except KeyError:
+                continue
+            imgList.append(placeImg)
+
+        print('IMG LIST BITTI')
+        print(imgList)
+
+    return render(request, 'home.html', {'pics': imgList})
+
 
 def signup(request):
     if request.method == 'POST':
